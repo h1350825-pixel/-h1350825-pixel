@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hey Mobile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-brand" onclick="showPage('home')">
+      <div class="logo-container">
+        <div class="logo-circle">H</div>
+        <span class="brand-name">Hey <span class="text-cyan">Mobile</span></span>
+      </div>
+    </div>
+    
+    <div class="nav-icons">
+      <button class="icon-btn" onclick="toggleSearch()">🔍</button>
+      <button class="icon-btn">⚙️</button>
+      <button class="icon-btn" onclick="showWishlist()">♡ <span class="badge-count" id="wishlistCount">0</span></button>
+      <button class="icon-btn primary-icon" onclick="showCart()">🛒 <span class="badge-count" id="cartCount">0</span></button>
+      <button class="icon-btn" onclick="toggleMobileMenu()">☰</button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Links -->
+  <div class="mobile-menu hidden" id="mobileMenu">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('home-products')">Shop</button>
+  </div>
+
+  <!-- Search Box -->
+  <div id="searchBox" class="search-box hidden">
+    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+    <button class="close-search" onclick="toggleSearch()">✕</button>
+    <div id="searchResults" class="search-results"></div>
+  </div>
+
+  <!-- Home Page -->
+  <main id="homePage">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-pill">
+        <span class="dot"></span> Premium technology in Addis Ababa
+      </div>
+      <h1>Experience <span class="text-cyan">Next-Gen</span> Tech.</h1>
+      <p>Authentic smartphones, headphones, accessories and charging products — carefully selected for people who want quality without compromise.</p>
+      
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="showPage('home-products', 'smartphones')">Shop Smartphones ➔</button>
+        <button class="btn-outline" onclick="showPage('home-products')">Explore Products</button>
+      </div>
+
+      <div class="hero-features">
+        <div class="feature-item">
+          <h4>100%</h4>
+          <p>Authentic</p>
+        </div>
+        <div class="feature-item">
+          <h4>Local</h4>
+          <p>Warranty</p>
+        </div>
+        <div class="feature-item">
+          <h4>Fast</h4>
+          <p>Addis Delivery</p>
+        </div>
+        <div class="feature-item">
+          <h4>Secure</h4>
+          <p>Payment</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trending Products -->
+    <section class="container products-section">
+      <div class="section-header">
+        <div>
+          <span class="sub-heading">TRENDING NOW</span>
+          <h2>Popular Products</h2>
+        </div>
+        <button class="view-all" onclick="showPage('home-products')">View all ➔</button>
+      </div>
+      <div id="trendingProducts" class="product-grid"></div>
+    </section>
+
+    <!-- Feature List (Icon Blocks) -->
+    <section class="container feature-list">
+      <div class="feature-row">
+        <div class="icon-box">🛡️</div>
+        <div class="feature-text">
+          <h3>100% Authentic</h3>
+          <p>Original products only.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="icon-box">🚚</div>
+        <div class="feature-text">
+          <h3>Fast Delivery</h3>
+          <p>Addis Ababa delivery.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="icon-box">💳</div>
+        <div class="feature-text">
+          <h3>Easy Payment</h3>
+          <p>Telebirr, Chapa & COD.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="icon-box">🎧</div>
+        <div class="feature-text">
+          <h3>Local Support</h3>
+          <p>We're here to help.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shop Page -->
+  <main id="shopPage" class="hidden container shop-padding">
+    <div class="shop-header">
+      <h2 id="shopTitle">All Products</h2>
+      <select id="sortSelect" class="dark-select" onchange="sortProducts()">
+        <option value="default">Sort By</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="name">Name: A to Z</option>
+      </select>
+    </div>
+    <div id="categoryButtons" class="category-filters"></div>
+    <div id="shopProducts" class="product-grid"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <h2 class="footer-logo">HEY <span class="text-cyan">MOBILE</span></h2>
+      <p class="footer-desc">Premium mobile phones and accessories in Addis Ababa, Ethiopia.</p>
+      
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <ul>
+            <li onclick="filterCategory('smartphones')">Smartphones</li>
+            <li onclick="filterCategory('audio')">Audio</li>
+            <li onclick="filterCategory('cases')">Cases</li>
+            <li onclick="filterCategory('power')">Power & Charging</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Visit Us</h3>
+          <p>Debrework Tower (side by kkare) 24A<br>Addis Ababa, Ethiopia</p>
+          <p class="mt-2">Mon–Sat: 8:30 AM – 7:30 PM</p>
+        </div>
+        <div class="footer-col">
+          <h3>Contact & Socials</h3>
+          <p>📞 0998470389</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/n.o.x.veil?stkn=cTQxYjZmdWg4cXd0" target="_blank" class="social-icon instagram" title="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://t.me/Naruto_1_6" target="_blank" class="social-icon telegram" title="Telegram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2026 Hey Mobile. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product Details Modal -->
+  <div id="productModal" class="modal hidden">
+    <div class="modal-content product-detail-content">
+      <button class="close-btn modal-absolute-close" onclick="closeModal('productModal')">✕</button>
+      <div id="productModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Your Cart</h2>
+        <button class="close-btn" onclick="closeModal('cartModal')">✕</button>
+      </div>
+      <div id="cartItems" class="cart-items-container"></div>
+      <div class="cart-footer">
+        <h3>Total: <span id="cartTotal">0 ETB</span></h3>
+        <button class="btn-primary w-100 mt-2" onclick="checkout()">Order via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div id="wishlistModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Your Wishlist</h2>
+        <button class="close-btn" onclick="closeModal('wishlistModal')">✕</button>
+      </div>
+      <div id="wishlistItems" class="product-grid"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
